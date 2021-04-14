@@ -1,7 +1,8 @@
 var englishText = "this is a secret message"
 var secretMessage = ".... --- .-- -.. -.--   .--. .- .-. - -. . .-."
 var morseText = ""
-var letterToMorse = [
+
+var letterToMorse: [String: String] = [
   "a": ".-",
   "b": "-...",
   "c": "-.-.",
@@ -39,7 +40,7 @@ for element in englishText {
 }
 
 var decodedMessage = ""
-var morseCodeArray = ""
+var morseCodeArray = [String]()
 var currMorse = ""
 
 for char in secretMessage {
@@ -64,5 +65,15 @@ morseCodeArray.append(currMorse)
 var morseToLetter: [String: String] = [:]
 
 for (letter, morseChar) in letterToMorse {
-  morseToLetter = [morseChar: letter]
+  morseToLetter[morseChar] = letter
 }
+
+for morseValue in morseCodeArray {
+if let letterChar = morseToLetter[morseValue]{
+    decodedMessage += letterChar
+  } else {
+    decodedMessage += " "
+  }
+}
+print(decodedMessage)
+
